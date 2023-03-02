@@ -17,6 +17,7 @@ import axios from "axios";
     }
     
 
+
 //TODO: sends axios.get to call the GIPHY API
 function* getGifs(action) {
   try {
@@ -28,41 +29,54 @@ function* getGifs(action) {
   }
 }
 
-function* addFavorite() {
-  try {
-    let response = yield axios.post("/api/favorite");
-    console.log("in post", response.data);
-    yield put({ type: "SET_GIFS" });
+    function* addFavorite (action) {
+        try {
+            let response = yield axios.post(`/api/favorite ${action.payload}`)
+            console.log('in post',response.data)
+            yield put ({type: 'SET_FAVORITES'})
   } catch (error) {
     console.log("error with element get request", error);
     yield put({ type: "FETCH_ERROR", payload: error });
   }
+
+     }
+
+     function* getFavorites () {
+        try {
+        let response = yield axios.get(`/api/favorite`)
+        console.log('in Favorites get',response.data)
+        yield put ({type:'SET_FAVORITES', payload: response.data})
+        } catch (error) {
+         console.log('error with element get request', error);
+        yield put ({type:'FETCH_ERROR', payload: error})
+        }
+            }
+         
+
+      function* updateCategory (action) {
+        try {
+            let response = yield axios.put(`/api/favorite ${action.payload}`)
+            console.log('UPDATE ME',response.data)
+            yield put ({type:'SET_CATEGORY',payload: response.data })
+                    
+          } catch (error) {
+        console.log('error with element get request', error);
+        yield put ({type:'FETCH_ERROR', payload: error})
+        }
+            }
+                
+
+
+    // setGifs REDUCER
+    const setGifs = (state =[],action) => {
+        if(action.type === 'SET_GIFS') {
+            return action.payload
+        }
+        return state;
+    }
 }
 
-function* getFavorites() {
-  try {
-  } catch (error) {
-    console.log("error with element get request", error);
-    yield put({ type: "FETCH_ERROR", payload: error });
-  }
-}
 
-function* updateCategory() {
-  try {
-  } catch (error) {
-    console.log("error with element get request", error);
-    yield put({ type: "FETCH_ERROR", payload: error });
-  }
-}
-
-// setGifs REDUCER
-//! search results reducer
-const setGifs = (state = [], action) => {
-  if (action.type === "SET_GIFS") {
-    return action.payload;
-  }
-  return state;
-};
 
 const setFavorites = (state = [], action) => {
   if (action.type === "SET_FAVORITES") {
