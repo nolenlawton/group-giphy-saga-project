@@ -1,0 +1,19 @@
+body {
+    margin: 0px;
+    text-align: center;
+}
+
+.headerTitle {
+    margin: 0px;
+    padding: 16px;
+}
+
+.header {
+    background-color: lightblue;
+    margin: 0px;
+}
+
+.links{
+    display: flex;
+    justify-content: space-around;
+}
