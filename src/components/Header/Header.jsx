@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom"
-import './Header.css'
+import { Link } from "react-router-dom";
+import './Header.css';
 
-function Header () {
-    return(
+function Header() {
+    return (
         <div className="header">
-            <h1 className="headerTitle">HEADER</h1>
+            <h1 className="headerTitle">GIPHY SAGA PROJECT</h1>
             <div className="links">
                 <Link to='/'>
-                    <h2>Search</h2> 
+                    <h2>Search</h2>
                 </Link>
 
                 <Link to='/favorites'>
@@ -15,7 +15,7 @@ function Header () {
                 </Link>
             </div>
         </ div>
-    )
+    );
 }
 
-export default Header
+export default Header;
