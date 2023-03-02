@@ -9,7 +9,7 @@ VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
 
 CREATE TABLE "favorites" (
 	"id" SERIAL PRIMARY KEY,
-	"url" VARCHAR(250) NOT NULL
+	"url" VARCHAR(250) NOT NULL,
 	"cat_id" INT REFERENCES "category"
 );
 
