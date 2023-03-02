@@ -12,6 +12,7 @@ function Search () {
             type: 'GET_GIFS',
             payload: search
         })
+        console.log('search is: ', search)
     }
 
     const favoriteGif = () => {
@@ -27,9 +28,10 @@ function Search () {
             <input onChange={(event) => setSearch(event.target.value)} type='text' placeholder="search" />
             <button onClick={getGifs}>Search Gifs</button>
             {gifs.map((gif, i) => {
+                console.log(gif)
                 return(
                     <div key={i}>
-                        <img src={gif} />
+                        <img src={gif.url} />
                         <button onClick={favoriteGif} >Favorite</button>
                     </div>
                 )

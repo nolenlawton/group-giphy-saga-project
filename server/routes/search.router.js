@@ -4,13 +4,21 @@ const router = express.Router();
 
 router.get('/:q', (req,res) => {
     let searchTerm = req.params.q;
-    axios.get(`http://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_API_KEY}&q=${searchTerm}&rating=pg-13`)
+    console.log('search term: ', searchTerm)
+
+    console.log(process.env.GIPHY_API_KEY)
+
+    const params = {
+        api_key : process.env.GIPHY_API_KEY,
+        q : searchTerm
+    }
+
+    axios.get(`https://api.giphy.com/v1/gifs/search?`, { params })
         .then((response) => {
-            console.log('response is', response);
             res.send(response.data.data);
         })
         .catch((error) => {
-            console.log('Error in Giphy search GET server side', error);
+            // console.log('Error in Giphy search GET server side', error);
         })
 })
 

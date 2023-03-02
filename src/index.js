@@ -20,6 +20,7 @@ import axios from "axios";
 
 //TODO: sends axios.get to call the GIPHY API
 function* getGifs(action) {
+    console.log('action.payload is: ', action.payload)
   try {
     let response = yield axios.get(`/api/search/${action.payload}`);
     yield put({ type: "SET_GIFS", payload: response.data });
@@ -74,7 +75,6 @@ function* getGifs(action) {
         }
         return state;
     }
-}
 
 
 
