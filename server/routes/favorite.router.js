@@ -3,21 +3,48 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-// return all favorite images
+// original code: return all favorite images
+// router.get('/', (req, res) => {
+//   res.sendStatus(200);
+// });
+
+// TODO: return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
-});
+  const queryText = `
+  SELECT * FROM "favorites" ORDER BY "cat_id";
+  `
+  pool.query(queryText)
+      .then(response => {
+        res.send(response.rows)
+      }).catch(err => {
+        console.log('Error on GET favorites: ', err);
+        res.sendStatus(500);
+      })
+  })
 
-// add a new favorite
+// original code: add a new favorite
+// router.post('/', (req, res) => {
+//   res.sendStatus(200);
+// });
+
+// TODO: add a new favorite:
 router.post('/', (req, res) => {
-  res.sendStatus(200);
+  const fav = req.body;
+  
+  const queryText = `
+  INSERT INTO "favorites" ("url")
+    values($1)
+  `
+  const values = [fav.url]
+  pool.query(queryText, values)
+      .then(response => {
+        res.sendStatus(200)
+      }).catch(err => {
+        console.log('Error on POST FAVORITE: ', err);
+        res.sendStatus(500)       
+      })
 });
 
-// update given favorite with a category id
-router.put('/:favId', (req, res) => {
-  // req.body should contain a category_id to add to this favorite image
-  res.sendStatus(200);
-});
 
 // delete a favorite
 router.delete('/', (req, res) => {
