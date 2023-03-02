@@ -9,12 +9,13 @@ import { takeEvery, put } from "@redux-saga/core/effects";
 import axios from "axios";
 
 // This saga will watch for actions
-function* watcherSaga() {
-  yield takeEvery("GET_GIFS", getGifs);
-  yield takeEvery("ADD_FAVORITES", addFavorite);
-  yield takeEvery("GET_FAVORITES", getFavorites);
-  yield takeEvery("UPDATE_CATEGORY", updateCategory);
-}
+    function* watcherSaga () {
+        yield takeEvery('GET_GIFS',getGifs)
+        yield takeEvery('ADD_FAVORITE',addFavorite)
+        yield takeEvery('GET_FAVORITES',getFavorites)
+        yield takeEvery('UPDATE_CATEGORY',updateCategory)
+    }
+    
 
 //TODO: sends axios.get to call the GIPHY API
 function* getGifs(action) {
