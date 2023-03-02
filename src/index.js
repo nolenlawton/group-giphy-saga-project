@@ -17,7 +17,7 @@ import axios from 'axios';
         yield takeEvery('UPDATE_CATEGORY',updateCategory)
     }
 
-    function* getGifs (action) {
+    function* getGifs () {
 try {
     console.log('in get')
     let response = yield axios.get(`/api/search`)
@@ -30,11 +30,11 @@ try {
 }
     }
 
-    function* addFavorite () {
+    function* addFavorite (action) {
         try {
-            let response = yield axios.post('/api/favorite')
+            let response = yield axios.post(`/api/favorite ${action.payload}`)
             console.log('in post',response.data)
-            yield put ({type: 'SET_GIFS'})
+            yield put ({type: 'SET_FAVORITES'})
   } catch (error) {
         console.log('error with element get request', error);
         yield put ({type:'FETCH_ERROR', payload: error})
@@ -43,7 +43,9 @@ try {
 
      function* getFavorites () {
         try {
-            
+        let response = yield axios.get(`/api/favorite`)
+        console.log('in Favorites get',response.data)
+        yield put ({type:'SET_FAVORITES', payload: response.data})
         } catch (error) {
          console.log('error with element get request', error);
         yield put ({type:'FETCH_ERROR', payload: error})
@@ -51,9 +53,11 @@ try {
             }
          
 
-      function* updateCategory () {
+      function* updateCategory (action) {
         try {
-
+            let response = yield axios.put(`/api/favorite ${action.payload}`)
+            console.log('UPDATE ME',response.data)
+            yield put ({type:'SET_CATEGORY',payload: response.data })
                     
           } catch (error) {
         console.log('error with element get request', error);

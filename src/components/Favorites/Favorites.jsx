@@ -32,7 +32,7 @@ function Favorites() {
                 {favoritesReducer.map((favorite, i) => {
                     return (<div key={i}>
                         <img src={favorite} alt="One of your favorite gifs" />
-                        <label for='categories'>Select a category</label>
+                        <label htmlFor ='categories'>Select a category</label>
                         <select id='categories' name='categories'>
                             <option value='1'>Funny</option>
                             <option value='2'>Cohort</option>
