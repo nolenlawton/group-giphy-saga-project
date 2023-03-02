@@ -17,7 +17,7 @@ function Favorites() {
         });
     };
 
-    //dispatch PUTS category from dropdown menu to table 
+    //dispatch POST category from dropdown menu to table 
     const addCategory = (category) => {
         dispatch({
             type: 'ADD_CATEGORY',
@@ -30,7 +30,7 @@ function Favorites() {
             <h2>Favorites Page</h2>
             <span>
                 {favoritesReducer.map((favorite, i) => {
-                    return <div key={i}>
+                    return (<div key={i}>
                         <img src={favorite} alt="One of your favorite gifs" />
                         <label for='categories'>Select a category</label>
                         <select id='categories' name='categories'>
@@ -41,7 +41,7 @@ function Favorites() {
                             <option value='5'>Meme</option>
                         </select>
                         <button onClick={(event) => addCategory(value)}>Submit</button>
-                    </div>;
+                    </div>);
                 })}
 
             </span>

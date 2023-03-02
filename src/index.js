@@ -23,7 +23,7 @@ try {
     let response = yield axios.get(`/api/search`)
     console.log(response.data)
     //put is the same as dispatch         
-    yield put ({type: 'SET_GIFTS', payload: response.data})
+    yield put ({type: 'SET_GIFS', payload: response.data})
 } catch (error) {
     console.log('error with element get request', error);
     yield put ({type:'FETCH_ERROR', payload: error})
@@ -34,7 +34,7 @@ try {
         try {
             let response = yield axios.post('/api/favorite')
             console.log('in post',response.data)
-            yield put ({type: 'SET_GIFTS'})
+            yield put ({type: 'SET_GIFS'})
   } catch (error) {
         console.log('error with element get request', error);
         yield put ({type:'FETCH_ERROR', payload: error})
@@ -63,9 +63,9 @@ try {
                 
 
 
-    // setGifts REDUCER
+    // setGifs REDUCER
     const setGifs = (state =[],action) => {
-        if(action.type === 'SET_GIFTS') {
+        if(action.type === 'SET_GIFS') {
             return action.payload
         }
         return state;
