@@ -11,11 +11,60 @@ import axios from 'axios';
 
 // This saga will watch for actions
     function* watcherSaga () {
-
+        yield takeEvery('GET_GIFS',getGifs)
+        yield takeEvery('ADD_FAVORITES',addFavorite)
+        yield takeEvery('GET_FAVORITES',getFavorites)
+        yield takeEvery('UPDATE_CATEGORY',updateCategory)
     }
 
+    function* getGifs (action) {
+try {
+    console.log('in get')
+    let response = yield axios.get(`/api/search`)
+    console.log(response.data)
+    //put is the same as dispatch         
+    yield put ({type: 'SET_GIFTS', payload: response.data})
+} catch (error) {
+    console.log('error with element get request', error);
+    yield put ({type:'FETCH_ERROR', payload: error})
+}
+    }
+
+    function* addFavorite () {
+        try {
+            let response = yield axios.post('/api/favorite')
+            console.log('in post',response.data)
+            yield put ({type: 'SET_GIFTS'})
+  } catch (error) {
+        console.log('error with element get request', error);
+        yield put ({type:'FETCH_ERROR', payload: error})
+  }
+     }
+
+     function* getFavorites () {
+        try {
+            
+        } catch (error) {
+         console.log('error with element get request', error);
+        yield put ({type:'FETCH_ERROR', payload: error})
+        }
+            }
+         
+
+      function* updateCategory () {
+        try {
+
+                    
+          } catch (error) {
+        console.log('error with element get request', error);
+        yield put ({type:'FETCH_ERROR', payload: error})
+        }
+            }
+                
+
+
     // setGifts REDUCER
-    const setGifts = (state =[],action) => {
+    const setGifs = (state =[],action) => {
         if(action.type === 'SET_GIFTS') {
             return action.payload
         }
@@ -41,7 +90,7 @@ import axios from 'axios';
 const sagaMiddleware = createSagaMiddleware ();
 const storeInstance = createStore (
     combineReducers({
-        setGifts,
+        setGifs,
         setFavorites,
         setCategory
     }),
