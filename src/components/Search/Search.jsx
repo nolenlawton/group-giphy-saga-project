@@ -28,10 +28,10 @@ function Search () {
             <input onChange={(event) => setSearch(event.target.value)} type='text' placeholder="search" />
             <button onClick={getGifs}>Search Gifs</button>
             {gifs.map((gif, i) => {
-                console.log(gif)
+                console.log(gif.images.original.url)
                 return(
                     <div key={i}>
-                        <img src={gif.url} />
+                        <img src={gif.images.original.url} />
                         <button onClick={favoriteGif} >Favorite</button>
                     </div>
                 )
