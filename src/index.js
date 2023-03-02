@@ -12,7 +12,7 @@ import axios from 'axios';
 // This saga will watch for actions
     function* watcherSaga () {
         yield takeEvery('GET_GIFS',getGifs)
-        yield takeEvery('ADD_FAVORITES',addFavorite)
+        yield takeEvery('ADD_FAVORITE',addFavorite)
         yield takeEvery('GET_FAVORITES',getFavorites)
         yield takeEvery('UPDATE_CATEGORY',updateCategory)
     }
