@@ -56,8 +56,11 @@ function Favorites() {
 
   return (
     <>
+    <div className="favoritesPage">
       <h2>Favorites Page</h2>
+    </div>
       <span>
+      <div className="imageItems">
         {favoritesReducer.map((favorite, i) => {
           const urlObject = JSON.parse(favorite.url);
           const url = urlObject.url;
@@ -69,8 +72,9 @@ function Favorites() {
 
 
           return (
-            <div key={i}>
+            <div className="imageItem" key={i}>
               <img src={url} alt={`Favorite Gif ${i}`} />
+              <div>
               <select
                 id="categories"
                 name="categories"
@@ -78,19 +82,21 @@ function Favorites() {
                 // Set the selected category based on the state
                 value={categoryValue}
               >
-                <option value="">--Select a category--</option>
+                <option value="">select</option>
                 <option value="Funny">Funny</option>
                 <option value="Cohort">Cohort</option>
                 <option value="Cartoon">Cartoon</option>
                 <option value="NSFW">NSFW</option>
                 <option value="Meme">Meme</option>
               </select>
+              </div>
               <button onClick={() => deleteFavorite(favorite.id)}>
                 Delete
               </button>
             </div>
           );
         })}
+      </div>
       </span>
     </>
   );
