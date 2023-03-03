@@ -34,11 +34,14 @@ router.post('/', (req, res) => {
   const queryText = `
   INSERT INTO "favorites" ("url")
     values($1)
+    RETURNING *
   `
-  const values = [fav.url]
+  // const values = [fav.url]
+  const values = [fav];
   pool.query(queryText, values)
       .then(response => {
-        res.sendStatus(200)
+        res.send(response.rows[0]);
+        // res.sendStatus(200)
       }).catch(err => {
         console.log('Error on POST FAVORITE: ', err);
         res.sendStatus(500)       
