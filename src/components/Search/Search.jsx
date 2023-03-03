@@ -2,6 +2,8 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 
+import './Search.css'
+
 function Search () {
     const gifs = useSelector(store => store.setGifs)
     const [search, setSearch] = useState('')
@@ -12,31 +14,53 @@ function Search () {
             type: 'GET_GIFS',
             payload: search
         })
-        console.log('search is: ', search)
     }
 
-    const favoriteGif = () => {
+    const favoriteGif = (event) => {
         dispatch({
             type: 'ADD_FAVORITE',
             payload: 'urlTest'
         })
+       
+// changes color of favorite button
+        if (event.target.classList.value) {
+            event.target.classList.remove('favorite')
+        }
+        else {
+            event.target.classList.add('favorite')
+        }
     }
+
+    const onImageClick = (event) => {
+        if (event.target.classList.value) {
+            event.target.classList.remove('grow')
+        }
+        else {
+            event.target.classList.add('grow')
+        }
+    }
+
     
     return(
-        <>
+        <>  
+            <div className='searchInput'>
             <h2>Search Page</h2>
             <input onChange={(event) => setSearch(event.target.value)} type='text' placeholder="search" />
             <button onClick={getGifs}>Search Gifs</button>
+            </div>
+            <div className="imageItem">
             {gifs.map((gif, i) => {
-                console.log(gif.images.original.url)
                 return(
-                    <div key={i}>
-                        <img src={gif.images.original.url} />
+                    <div  key={i}>
+                        <img onClick={onImageClick} src={gif.images.original.url} />
+                        <div>
                         <button onClick={favoriteGif} >Favorite</button>
+                        </div>
                     </div>
                 )
             }
             )}
+            </div>
         </>
     )
 }
