@@ -51,6 +51,7 @@ function* getFavorites() {
   }
 }
 
+
 function* updateCategory(action) {
   try {
     let response = yield axios.put(`/api/favorite ${action.payload}`);
