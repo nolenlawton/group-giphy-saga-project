@@ -40,10 +40,11 @@ function* addFavorite(action) {
   }
 }
 
+//TODO: GET all favorites from database
 function* getFavorites() {
   try {
     let response = yield axios.get(`/api/favorite`);
-    console.log("in Favorites get", response.data);
+    // console.log("in Favorites get", response.data);
     yield put({ type: "SET_FAVORITES", payload: response.data });
   } catch (error) {
     console.log("error with element get request", error);
@@ -53,14 +54,15 @@ function* getFavorites() {
 
 
 function* updateCategory(action) {
-  try {
-    let response = yield axios.put(`/api/favorite ${action.payload}`);
-    console.log("UPDATE ME", response.data);
-    yield put({ type: "SET_CATEGORY", payload: response.data });
-  } catch (error) {
-    console.log("error with element get request", error);
-    yield put({ type: "FETCH_ERROR", payload: error });
-  }
+    try {
+        yield axios.put(`/api/favorite/${action.payload.id}`, {
+          category: action.payload.category,
+        });
+        yield put({ type: "GET_FAVORITES" });
+      } catch (error) {
+        console.log("error with category put request", error);
+        yield put({ type: "FETCH_ERROR", payload: error });
+      }
 }
 
 // setGifs REDUCER
