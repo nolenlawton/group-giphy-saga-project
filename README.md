@@ -15,7 +15,7 @@ Overall, this application allows users to easily search for and save their favor
 
 ---
 ## **TABLE OF CONTENT:**
-1. [Screenshot of application](#screenshot-of-application)
+1. [Screenshot of application](#screenshots-of-application)
 1. [Installation & Setup](#installation--setup)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
