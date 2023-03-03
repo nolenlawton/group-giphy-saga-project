@@ -14,6 +14,7 @@ function* watcherSaga() {
   yield takeEvery("ADD_FAVORITE", addFavorite);
   yield takeEvery("GET_FAVORITES", getFavorites);
   yield takeEvery("UPDATE_CATEGORY", updateCategory);
+  yield takeEvery("DELETE_FAVORITE", deleteFavorite);
 }
 
 //TODO: sends axios.get to call the GIPHY API
@@ -52,7 +53,7 @@ function* getFavorites() {
   }
 }
 
-
+//TODO: update favorite gif's catagory 
 function* updateCategory(action) {
     try {
         yield axios.put(`/api/favorite/${action.payload.id}`, {
@@ -64,6 +65,17 @@ function* updateCategory(action) {
         yield put({ type: "FETCH_ERROR", payload: error });
       }
 }
+
+//TODO: DELETE favorite gif from database 
+function* deleteFavorite(action) {
+    try {
+      yield axios.delete(`/api/favorite/${action.payload}`);
+      yield put({ type: "GET_FAVORITES" });
+    } catch (error) {
+      console.log("error with delete request", error);
+      yield put({ type: "FETCH_ERROR", payload: error });
+    }
+  }
 
 // setGifs REDUCER
 const setGifs = (state = [], action) => {

@@ -27,6 +27,15 @@ function Favorites() {
     });
   };
 
+
+  //TODO: dispatch DELETE favorite from table
+  const deleteFavorite = (idToDelete) => {
+    dispatch({
+      type: "DELETE_FAVORITE",
+      payload: idToDelete,
+    });
+  };
+
   return (
     <>
       <h2>Favorites Page</h2>
@@ -50,6 +59,9 @@ function Favorites() {
                 <option value="NSFW">NSFW</option>
                 <option value="Meme">Meme</option>
               </select>
+              <button onClick={() => deleteFavorite(favorite.id)}>
+                Delete
+              </button>
             </div>
           );
         })}
