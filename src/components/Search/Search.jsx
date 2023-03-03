@@ -24,7 +24,7 @@ function Search() {
   };
 
   //! when keyboard 'enter' is press it will trigger the 'search gifs' button
-  // this is an additional feature to the onClick 'search gifs' button
+  // this is an additional feature to the onClick 'search gif
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       getGifs();
