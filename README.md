@@ -23,6 +23,7 @@ Overall, this application allows users to easily search for and save their favor
 1. [Acknowledgement](#acknowledgement)
 
 ---
+## Screenshots of application
 ### search page:
 ![search page](./public/searchvview.png)
 ### favorites page:
