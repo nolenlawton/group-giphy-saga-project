@@ -18,19 +18,12 @@ function Search() {
   };
 
   //! ADD gif to favorite page:
-  const favoriteGif = (url, event) => {
+  const favoriteGif = (url) => {
     dispatch({
       type: "ADD_FAVORITE",
       payload: url,
     });
-    
-    // changes color of favorite button
-        if (event.target.classList.value) {
-            event.target.classList.remove('favorite')
-        }
-        else {
-            event.target.classList.add('favorite')
-        }
+
   };
   
   const onMouseEnter = (event) => {
@@ -38,7 +31,10 @@ function Search() {
     }
 
     const onMouseLeave = () => {
+
         let images = document.getElementsByClassName('image')
+
+        console.log(images)
         
         for (let image of images) {
             image.classList.remove('hover')
@@ -56,6 +52,7 @@ function Search() {
 
   return (
     <>
+    <div className="searchInput">
       <h2>Search Page</h2>
       <input
         onChange={(event) => setSearch(event.target.value)}
@@ -64,17 +61,19 @@ function Search() {
         onKeyPress={handleKeyPress}
       />
       <button onClick={getGifs}>Search Gifs</button>
+    </div>
+    <div className="imageItem">
       {gifs.map((gif, i) => {
-        console.log(gif.images.original.url);
         return (
-          <div key={i}>
-            <img src={gif.images.original.url} />
-            <button onClick={() => favoriteGif(gif.images.original.url)}>
-              Favorite
-            </button>
+          <div onMouseLeave={onMouseLeave} key={i}>
+            <img id={i} className="image" onMouseEnter={onMouseEnter} src={gif.images.original.url} />
+            <div>
+              <button  onClick={() => favoriteGif(gif.images.original.url)}>Favorite</button>
+            </div>
           </div>
         );
       })}
+      </div>
     </>
   );
 }
