@@ -5,30 +5,45 @@ function Favorites() {
   const dispatch = useDispatch();
   const favoritesReducer = useSelector((store) => store.setFavorites);
 
-  //renders page on load
+  // Define a state for selected categories
+  const [selectedCategories, setSelectedCategories] = useState({});
+
+  // Load the selected categories from the store when the component is mounted
   useEffect(() => {
-    getFavorites();
-  }, []);
+    const categories = {};
+    favoritesReducer.forEach((favorite) => {
+      const urlObject = JSON.parse(favorite.url);
+      const url = urlObject.url;
+      categories[url] = favorite.category;
+    });
+    setSelectedCategories(categories);
+  }, [favoritesReducer]);
 
   //dispatch GETS favorite gifs from table to render on favorite page
-  const getFavorites = () => {
+  useEffect(() => {
     dispatch({
       type: "GET_FAVORITES",
     });
-  };
+  }, [dispatch]);
 
-  //TODO: dispatch POST category from dropdown menu to table
-  // need to access the url property of the favorite object when rendering the img tag
-  const addCategory = (event, url) => {
+  //dispatch POST category from dropdown menu to table
+  const addCategory = (event, favorite) => {
     const category = event.target.value;
+    const urlObject = JSON.parse(favorite.url);
+    const url = urlObject.url;
     dispatch({
       type: "UPDATE_CATEGORY",
-      payload: { id: url.id, category: category },
+      payload: { id: favorite.id, category: category },
+    });
+
+    // Update the selected category state
+    setSelectedCategories({
+      ...selectedCategories,
+      [url]: category,
     });
   };
 
-
-  //TODO: dispatch DELETE favorite from table
+  //dispatch DELETE favorite from table
   const deleteFavorite = (idToDelete) => {
     dispatch({
       type: "DELETE_FAVORITE",
@@ -44,6 +59,12 @@ function Favorites() {
           const urlObject = JSON.parse(favorite.url);
           const url = urlObject.url;
 
+
+            // if there is a category assigned to gif than set that category
+            // otherwise empty string 'default value' -Select a category-
+          let categoryValue = favorite.cat_id ? favorite.cat_id : ''
+
+
           return (
             <div key={i}>
               <img src={url} alt={`Favorite Gif ${i}`} />
@@ -51,6 +72,8 @@ function Favorites() {
                 id="categories"
                 name="categories"
                 onChange={(event) => addCategory(event, favorite)}
+                // Set the selected category based on the state
+                value={categoryValue}
               >
                 <option value="">--Select a category--</option>
                 <option value="Funny">Funny</option>
@@ -73,7 +96,7 @@ function Favorites() {
 export default Favorites;
 
 
-//! COMMENTS: 
+//! COMMENTS:
 
 //dispatch POST category from dropdown menu to table
 // --- changes made because:
@@ -94,7 +117,7 @@ export default Favorites;
 // -- the event.target.value property inside the addCategory function
 // -- the button 'Submit' removed
 // -- remove label as the categories already is self defining
-// -- img src={favorite.url}:  it seems that the favorite.url property is actually a JSON string 
+// -- img src={favorite.url}:  it seems that the favorite.url property is actually a JSON string
 //                             that contains the URL for the giphy.gif file
 //                            will need to parse this JSON string in order to get the URL as a string value:
 //      how it's parsed into string:        const urlObject = JSON.parse(favorite.url);

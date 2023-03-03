@@ -4,9 +4,8 @@ const router = express.Router();
 
 router.get('/:q', (req,res) => {
     let searchTerm = req.params.q;
-    console.log('search term: ', searchTerm)
-
-    console.log(process.env.GIPHY_API_KEY)
+    // console.log('search term: ', searchTerm)
+    // console.log(process.env.GIPHY_API_KEY)
 
     const params = {
         api_key : process.env.GIPHY_API_KEY,
