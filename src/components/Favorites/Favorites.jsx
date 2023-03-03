@@ -29,8 +29,11 @@ function Favorites() {
   //dispatch POST category from dropdown menu to table
   const addCategory = (event, favorite) => {
     const category = event.target.value;
+    console.log('IN FAVORITE POST: event.target.value', event.target.value)
     const urlObject = JSON.parse(favorite.url);
+    console.log('urlObject', urlObject)
     const url = urlObject.url;
+    console.log('url', url);
     dispatch({
       type: "UPDATE_CATEGORY",
       payload: { id: favorite.id, category: category },
