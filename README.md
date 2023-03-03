@@ -13,15 +13,9 @@ In the Favorites View, the user can see all of the Giphy images they have favori
 Overall, this application allows users to easily search for and save their favorite Giphy images with the ability to categorize them for easy organization.
 
 
-
-
-
-
-
-
 ---
 ## **TABLE OF CONTENT:**
-1. [Screenshot of app](#screenshot-image)
+1. [Screenshot of application](#screenshot-of-application)
 1. [Installation & Setup](#installation--setup)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
@@ -29,9 +23,8 @@ Overall, this application allows users to easily search for and save their favor
 1. [Acknowledgement](#acknowledgement)
 
 ---
-## Screenshot Image
-![Screenshot](./public/images/screenshot.gif)
-
+## Screenshot of application
+![search view](./public/searchvview.png)
 
 ---
 
