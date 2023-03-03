@@ -3,7 +3,6 @@ img {
     height: 100px;
     margin-top: 10px;
     border-radius: 8px;
-    cursor: pointer
 }
 
 button, input {
@@ -15,21 +14,35 @@ button, input {
 
 button {
     cursor: pointer;
-    background-color: rgb(222, 222, 222);
+    background-color: white;
 }
 
-.searchInput {
+select {
+    width: 100px;
+    border-radius: 8px;
+}
+
+.searchInput, .favoritesPage {
     background-color: lightblue;
     padding-top: 8px;
     padding-bottom: 8px;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
     border-top: 4px solid grey;
-    border-bottom: 4px solid grey
+    border-bottom: 4px solid grey;
+    margin-bottom: 10px
+}
+
+.imageItems {
+    columns: 5;
 }
 
 .imageItem {
-    columns: 5;
+    background-color: rgb(222, 222, 222);
+    border-radius: 8px;
+    width: 200px;
+    margin:auto;
+    margin-bottom: 10px;
 }
 
 .favorite {
@@ -41,3 +54,5 @@ button {
     width: 150px;
     height: 150px
 }
+
+

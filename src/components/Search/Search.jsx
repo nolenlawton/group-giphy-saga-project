@@ -24,6 +24,14 @@ function Search() {
       payload: url,
     });
 
+
+    if (document.getElementById(url).classList[0] === 'favorite') {
+      document.getElementById(url).classList.remove('favorite')
+    }
+    else {
+      document.getElementById(url).classList.add('favorite')
+    }
+
   };
   
   const onMouseEnter = (event) => {
@@ -31,10 +39,7 @@ function Search() {
     }
 
     const onMouseLeave = () => {
-
         let images = document.getElementsByClassName('image')
-
-        console.log(images)
         
         for (let image of images) {
             image.classList.remove('hover')
@@ -62,13 +67,13 @@ function Search() {
       />
       <button onClick={getGifs}>Search Gifs</button>
     </div>
-    <div className="imageItem">
+    <div className="imageItems">
       {gifs.map((gif, i) => {
         return (
-          <div onMouseLeave={onMouseLeave} key={i}>
-            <img id={i} className="image" onMouseEnter={onMouseEnter} src={gif.images.original.url} />
+          <div className="imageItem" onMouseLeave={onMouseLeave} key={i}>
+            <img className="image favorite" onMouseEnter={onMouseEnter} src={gif.images.original.url} />
             <div>
-              <button  onClick={() => favoriteGif(gif.images.original.url)}>Favorite</button>
+              <button id={gif.images.original.url} onClick={() => favoriteGif(gif.images.original.url)}>Favorite</button>
             </div>
           </div>
         );
