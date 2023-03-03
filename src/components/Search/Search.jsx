@@ -31,15 +31,17 @@ function Search () {
         }
     }
 
-    const onImageClick = (event) => {
-        if (event.target.classList.value) {
-            event.target.classList.remove('grow')
-        }
-        else {
-            event.target.classList.add('grow')
-        }
+    const onMouseEnter = (event) => {
+        event.target.classList.add('hover')
     }
 
+    const onMouseLeave = () => {
+        let images = document.getElementsByClassName('image')
+        
+        for (let image of images) {
+            image.classList.remove('hover')
+        }
+    }
     
     return(
         <>  
@@ -51,8 +53,8 @@ function Search () {
             <div className="imageItem">
             {gifs.map((gif, i) => {
                 return(
-                    <div  key={i}>
-                        <img onClick={onImageClick} src={gif.images.original.url} />
+                    <div  onMouseLeave={onMouseLeave} key={i}>
+                        <img className="image" onMouseEnter={onMouseEnter} src={gif.images.original.url} />
                         <div>
                         <button onClick={favoriteGif} >Favorite</button>
                         </div>
