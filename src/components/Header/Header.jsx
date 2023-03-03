@@ -7,11 +7,11 @@ function Header() {
             <h1 className="headerTitle">GIPHY SAGA PROJECT</h1>
             <div className="links">
                 <Link to='/'>
-                    <h2>Search</h2>
+                    <h2 className="link">Search</h2>
                 </Link>
 
                 <Link to='/favorites'>
-                    <h2>Favorites</h2>
+                    <h2 className="link">Favorites</h2>
                 </Link>
             </div>
         </ div>
