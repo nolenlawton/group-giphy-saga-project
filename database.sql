@@ -7,11 +7,14 @@ CREATE TABLE "category" (
 INSERT INTO "category" ("name")
 VALUES ('funny'), ('cohort'), ('cartoon'), ('nsfw'), ('meme');
 
+-- added "gif_id" VARCHAR(150) to correlate with PUT
 CREATE TABLE "favorites" (
 	"id" SERIAL PRIMARY KEY,
 	"url" VARCHAR(250) NOT NULL,
+	"gif_id" VARCHAR(150),
 	"cat_id" INT REFERENCES "category"
 );
+
 
 INSERT INTO "favorites" ("url")
 VALUES ('url1'), ('url2'), ('url3'), ('url4'), ('url5');
